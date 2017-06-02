@@ -1,8 +1,20 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html {
+	box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
+body {
+  padding-top: 50px;
+}
+
+.jumbotron {
+	background: url(https://wallpaperscraft.com/image/orange_line_light_background_65822_2560x1600.jpg) no-repeat;
+}
+
+footer {
+	background: #f4f4f4;
+	height: 40px;
+	text-align: center;
+	margin-top: 30px;
+	padding-top: 10px;
+	overflow: auto;
 }

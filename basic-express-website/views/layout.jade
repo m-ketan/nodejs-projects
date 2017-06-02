@@ -5,7 +5,7 @@ html(lang='en')
 		meta(http-equiv='X-UA-Compatible', content='IE=edge')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		link(rel='icon', href='../../favicon.ico')
-		title Basic Express Website		
+		title #{title} | Basic Express Website		
 		link(href='/stylesheets/style.css', rel='stylesheet')
 		link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', rel='stylesheet')
 	body
@@ -21,16 +21,17 @@ html(lang='en')
 				#navbar.collapse.navbar-collapse
 					ul.nav.navbar-nav
 						li.active
-							a(href='#') Home
+							a(href='/') Home
 						li
-							a(href='#about') About
+							a(href='/about') About
 						li
-							a(href='#contact') Contact
+							a(href='/contact') Contact
 				.nav-collapse
 		
 		block content
 
-
+		footer
+			p &copy; 2017, All rights reserved.
 
 		script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
 		script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')

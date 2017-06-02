@@ -1,5 +1,22 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	.jumbotron
+		.container
+			h1 Welcome to the home page!
+			p Lorem ipsum dolor sit amet.
+			a.btn.btn-primary.btn-lg(href='#') Learn More
+	.container
+		.row
+			.col-md-4
+				h2 About Us
+				p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec tristique, nulla et pulvinar volutpat, nisl massa ultrices mauris, ut molestie tortor lorem in felis. Nullam sit amet venenatis diam, vel euismod justo.		
+				a.btn.btn-default(href='#') View Details
+			.col-md-4
+				h2 Services
+				p Duis nec metus non metus viverra tempus. Sed porttitor, leo non commodo varius, augue urna rhoncus eros, quis interdum nisi ex quis nulla.		
+				a.btn.btn-default(href='#') View Details
+			.col-md-4
+				h2 Get in Touch
+				p Ut at tempus purus, sed iaculis neque. Sed ac scelerisque quam. Praesent id erat vel tortor imperdiet maximus quis at lectus. Morbi mollis neque eu lacus pretium, eu ultricies sem semper.		
+				a.btn.btn-default(href='#') View Details		
