@@ -30,7 +30,7 @@ router.post('/register', function(req, res, next) {
 		var profileImageExt = req.files.profileimage.extension;
 		var profileImageSize = req.files.profileimage.size;
 	} else {
-		var profilepicName = 'nullimage.png';
+			var profileImageName = 'nullimage.png';
 	}
 	req.checkBody('name', 'Name is required!').notEmpty();
 	req.checkBody('email', 'Email is invalid!').isEmail();
@@ -50,20 +50,19 @@ router.post('/register', function(req, res, next) {
 			password2
 		});
 	} else {
-		var newUser = new User({
-			name,
-			email,
-			username,
-			password,
-			profileimage
+			var newUser = new User({
+				name,
+				email,
+				username,
+				password,
+				profileimage: profileImageName
 		});
 		//Create a new user
-		// User.createUser(newUser, function(err, user) {
-		// 	if(err) throw err;
-		// 	console.log(user);
-		// 	req.flash('success', 'User account has been created successfully!');
-		// 	res.redirect('/');
-		// });
+		User.createUser(newUser, function(err, user) {
+			if(err) throw err;
+			req.flash('success', 'User account has been created successfully!');
+			res.redirect('/');
+		});
 	}
 });
 
