@@ -3,7 +3,11 @@ extends layout
 block content
 	h1 Register
 	p Please register using the form below
-	form(method='POST', action='users/register', enctype='multipart/form-data')
+	ul.errors
+		if errors
+			each error, i in errors
+				li.alert.alert-danger #{error.msg}
+	form(method='post', action='register', enctype='multipart/form-data')
 		.form-group
 			label Name
 			input.form-control(name='name', type='text', placeholder='Enter name')
@@ -21,5 +25,5 @@ block content
 			input.form-control(name='password2', type='password', placeholder='Confirm password')
 		.form-group
 			label Profile Picture
-			input.form-control(name='profilepic', type='file')
+			input.form-control(name='profileimage', type='file')
 		input.btn.btn-default(name='submit', type='submit', value='Register')			
