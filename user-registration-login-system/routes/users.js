@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
+var LocalStrategy = require('passport-local').Strategy;
 
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -64,6 +65,24 @@ router.post('/register', function(req, res, next) {
 			res.redirect('/');
 		});
 	}
+});
+
+passport.use(new LocalStrategy(
+		function (username, password, done) {
+			User.getUserByUsername(username, function (err, user) {
+				if(err) throw err;
+				if(!user) {
+					console.log('Unknown user');
+					return done(null, false, {message: 'Unknown user'})
+				}
+			});
+		}
+	));
+
+router.post('/login', passport.authenticate('local', {failureRedirect: '/users/login', failureFlash: 'Invalid Username or Password'}), function(req, res) {
+	console.log('Authentication Successful');
+	req.flash('succes', 'You\'re logged in');
+	res.redirect('/');
 });
 
 module.exports = router;
