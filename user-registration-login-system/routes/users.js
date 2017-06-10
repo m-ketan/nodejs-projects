@@ -99,10 +99,15 @@ router.post('/register', upload.single('profileimage') ,function(req, res, next)
     });
 
     req.flash('success', 'You are now registered and can login');
-
     res.location('/');
     res.redirect('/');
   }
+});
+
+router.get('/logout', function (req, res) {
+  req.logout();
+  req.flash('success', "You are logged out!");
+  res.redirect('/users/login');
 });
 
 module.exports = router;
