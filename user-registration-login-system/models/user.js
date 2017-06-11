@@ -1,12 +1,12 @@
-var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 mongoose.connect('mongodb://localhost/userauth');
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 
 // User Schema
-var UserSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
 	username: {
 		type: String,
 		index: true
@@ -27,22 +27,23 @@ var UserSchema = mongoose.Schema({
 
 var User = module.exports = mongoose.model('User', UserSchema);
 
-module.exports.getUserById = function(id, callback){
+module.exports.getUserById = (id, callback) => {
 	User.findById(id, callback);
 }
 
-module.exports.getUserByUsername = function(username, callback){
-	var query = {username: username};
-	User.findOne(query, callback);
+module.exports.getUserByUsername = (username, callback) => {
+	User.findOne({username}, callback);
 }
 
-module.exports.comparePassword = function(candidatePassword, hash, callback){
+// Compares user entered pwd against stored hashed pwd
+module.exports.comparePassword = (candidatePassword, hash, callback) => {
 	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
     	callback(null, isMatch);
 	});
 }
 
-module.exports.createUser = function(newUser, callback){
+// Create user function, encrypts user entered pwd to hashed pwd
+module.exports.createUser = (newUser, callback) => {
 	bcrypt.genSalt(10, function(err, salt) {
     	bcrypt.hash(newUser.password, salt, function(err, hash) {
    			newUser.password = hash;
