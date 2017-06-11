@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
-mongoose.Promise = global.Promise;
+var bcrypt = require('bcryptjs');
+
 mongoose.connect('mongodb://localhost/userauth');
 
 var db = mongoose.connection;
@@ -32,7 +32,7 @@ module.exports.getUserById = function(id, callback){
 }
 
 module.exports.getUserByUsername = function(username, callback){
-	var query = {username};
+	var query = {username: username};
 	User.findOne(query, callback);
 }
 

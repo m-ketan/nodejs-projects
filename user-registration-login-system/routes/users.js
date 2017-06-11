@@ -7,6 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/user');
 
+/* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
@@ -62,11 +63,11 @@ router.post('/register', upload.single('profileimage') ,function(req, res, next)
   var password2 = req.body.password2;
 
   if(req.file){
-  	console.log('Uploading File...');
-  	var profileimage = req.file.filename;
+    console.log('Uploading File...');
+    var profileimage = req.file.filename;
   } else {
-  	console.log('No File Uploaded...');
-  	var profileimage = 'noimage.jpg';
+    console.log('No File Uploaded...');
+    var profileimage = 'noimage.jpg';
   }
 
   // Form Validator
@@ -81,11 +82,11 @@ router.post('/register', upload.single('profileimage') ,function(req, res, next)
   var errors = req.validationErrors();
 
   if(errors){
-  	res.render('register', {
-  		errors: errors
-  	});
+    res.render('register', {
+      errors: errors
+    });
   } else{
-  	var newUser = new User({
+    var newUser = new User({
       name: name,
       email: email,
       username: username,
@@ -99,14 +100,15 @@ router.post('/register', upload.single('profileimage') ,function(req, res, next)
     });
 
     req.flash('success', 'You are now registered and can login');
+
     res.location('/');
     res.redirect('/');
   }
 });
 
-router.get('/logout', function (req, res) {
+router.get('/logout', function(req, res){
   req.logout();
-  req.flash('success', "You are logged out!");
+  req.flash('success', 'You are now logged out');
   res.redirect('/users/login');
 });
 
